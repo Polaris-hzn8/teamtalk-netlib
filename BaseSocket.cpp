@@ -13,6 +13,7 @@
 	 5.处理套接字的事件，例如可读事件、可写事件和关闭事件，通过回调函数的方式进行处理
 */
 
+#include "crosslog.h"
 #include "BaseSocket.h"
 #include "EventDispatch.h"
 #include <unordered_map>

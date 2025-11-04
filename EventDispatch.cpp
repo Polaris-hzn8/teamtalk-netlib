@@ -6,6 +6,7 @@
  brief: 事件调度器 处理事件的调度与触发
 */
 
+#include "crosslog.h"
 #include "BaseSocket.h"
 #include "EventDispatch.h"
 using namespace std;

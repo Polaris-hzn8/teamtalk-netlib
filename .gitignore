@@ -39,5 +39,9 @@ bin/
 build/
 
 # protobuff
-protobuf/*
-!/protobuf/protobuf-2.6.1.tar.gz
+third/protobuf/*
+!third/protobuf/protobuf-2.6.1.tar.gz
+
+# slog
+!third/slog/include/slog_api.h
+!third/slog/lib/libslog.so
