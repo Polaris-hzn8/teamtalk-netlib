@@ -44,4 +44,3 @@ third/protobuf/*
 
 # slog
 !third/slog/include/slog_api.h
-!third/slog/lib/libslog.so
