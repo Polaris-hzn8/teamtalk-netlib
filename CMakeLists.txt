@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(netlib)
+project(network)
 
 aux_source_directory(. SRC_LIST1)
 aux_source_directory(./impdu SRC_LIST2)
@@ -36,9 +36,9 @@ link_directories(
     ${PB_LIB_DIR}
     ${SLOG_LIB_DIR})
 
-add_library(netlib STATIC
+add_library(network STATIC
     ${SRC_LIST1}
     ${SRC_LIST2}
     ${SRC_LIST3})
 
-target_link_libraries(netlib protobuf slog)
+target_link_libraries(network protobuf slog)

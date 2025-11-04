@@ -7,6 +7,7 @@
 */
 
 #include "util.h"
+#include "crosslog.h"
 #include "ImPduBase.h"
 #include "IM.BaseDefine.pb.h"
 using namespace IM::BaseDefine;
