@@ -1,8 +1,8 @@
 #!/bin/sh
 SRC_DIR=./
 GEM_DIR=./gen
-DEST_DIR=../pbgen
-PROTOC=$PWD/../protobuf/bin/protoc
+DEST_DIR=../src/pbgen
+PROTOC=../third/protobuf/bin/protoc
 
 build() {
     echo "building..."
@@ -24,7 +24,9 @@ build() {
 sync() {
     echo "syncing..."
     #C++
-    sudo cp $GEM_DIR/cpp/* $DEST_DIR/
+    rm -rf "$DEST_DIR"
+    mkdir -p "$DEST_DIR"
+    cp $GEM_DIR/cpp/* $DEST_DIR
 
     echo "sync finished."
     rm -rf ./gen
