@@ -4,15 +4,15 @@ project(network)
 # 设置C++标准
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(THIRD_DIR third)
 
-#################################################################################
-# 头文件包含
-include_directories(
-    src/
-    src/impdu
-    src/pbgen
-    third/protobuf/include
-)
+# 更精确地收集文件
+file(GLOB_RECURSE MAIN_HEADERS "src/*.h" "src/*.hpp")
+file(GLOB_RECURSE MAIN_SOURCES "src/*.cpp" "src/*.cc" "src/*.c")
+file(GLOB_RECURSE IMPDU_HEADERS "src/impdu/*.h" "src/impdu/*.hpp")
+file(GLOB_RECURSE IMPDU_SOURCES "src/impdu/*.cpp" "src/impdu/*.cc" "src/impdu/*.c")
+file(GLOB_RECURSE PB_HEADERS "src/pbgen/*.h" "src/pbgen/*.hpp")
+file(GLOB_RECURSE PB_SOURCES "src/pbgen/*.cpp" "src/pbgen/*.cc" "src/pbgen/*.c")
 
 ########################################################################
 # 平台差异化处理
@@ -25,13 +25,11 @@ if(WIN32)
         -D_CRT_SECURE_NO_WARNINGS
         -D_WINSOCK_DEPRECATED_NO_WARNINGS
         -DTIXML_USE_STL
+        -DYAOLOG_EXPORTS
     )
-    # Windows头文件包含
-    include_directories(
-        third/yaolog
-    )
+    set(LOG_DIR ${THIRD_DIR}/yaolog)
     # Windows源文件
-    file(GLOB PB_SOURCES "src/pbgen/*.cc")
+    file(GLOB YAOLOG_HEADERS "third/yaolog/*.h")
     file(GLOB YAOLOG_SOURCES "third/yaolog/*.cpp")
     # Windows编译选项
     if(MSVC)
@@ -56,12 +54,9 @@ else()
         -DTIXML_USE_STL
         -DLINUX_DAEMON
     )
-    # Linux头文件包含
-    include_directories(
-        third/slog/include
-    )
+    set(LOG_DIR ${THIRD_DIR}/slog/include)
     # Liuux源文件
-    file(GLOB PB_SOURCES "src/pbgen/*.cpp")
+    file(GLOB YAOLOG_HEADERS "")
     file(GLOB YAOLOG_SOURCES "")
     # Linux编译选项
     add_compile_options(-g -W -Wall)
@@ -70,22 +65,41 @@ else()
 endif()
 
 #################################################################################
+# 头文件包含
+include_directories(
+    src/
+    src/impdu
+    src/pbgen
+    third/protobuf/include
+    ${LOG_DIR}
+)
+
+#################################################################################
 # 收集主源码
-aux_source_directory(src SRC_LIST1)
-aux_source_directory(src/impdu SRC_LIST2)
+#aux_source_directory(src SRC_LIST1)
+#aux_source_directory(src/impdu SRC_LIST2)
+# 创建库目标
+add_library(network STATIC
+    ${MAIN_HEADERS} ${IMPDU_HEADERS} ${PB_HEADERS} ${YAOLOG_HEADERS}
+    ${MAIN_SOURCES} ${IMPDU_SOURCES} ${PB_SOURCES} ${YAOLOG_SOURCES}
+)
+
+# 设置分类
+source_group("Generated" FILES ${PB_SOURCES})
+source_group("Generated" FILES ${PB_HEADERS})
+source_group("Protocol" FILES ${IMPDU_HEADERS})
+source_group("Protocol" FILES ${IMPDU_SOURCES})
+source_group("Header Files" FILES ${MAIN_HEADERS})
+source_group("Source Files" FILES ${MAIN_SOURCES})
+if(WIN32)
+    source_group("Yaolog" FILES ${YAOLOG_SOURCES})
+    source_group("Yaolog" FILES ${YAOLOG_HEADERS})
+endif()
 
 # 设置输出目录
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
-
-# 创建库目标
-add_library(network STATIC
-    ${SRC_LIST1}
-    ${SRC_LIST2}
-    ${PB_SOURCES}
-    ${YAOLOG_SOURCES}   # Windows下包含yaolog源代码，Linux下为空
-)
 
 # 链接库
 target_link_libraries(network

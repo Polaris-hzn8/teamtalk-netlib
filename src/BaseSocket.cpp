@@ -68,13 +68,13 @@ CBaseSocket::~CBaseSocket()
 void CBaseSocket::SetSendBufSize(uint32_t send_size)
 {
     // 设置发送缓冲区大小
-    int ret = setsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, &send_size, 4);
+    int ret = setsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, SOCKOPT_CAST(&send_size), 4);
     if (ret == SOCKET_ERROR)
         log_error("set SO_SNDBUF failed for fd=%d", m_socket);
 
 	int size = 0;
     socklen_t len = 4;
-    getsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, &size, &len);// 获取发送缓冲区大小
+    getsockopt(m_socket, SOL_SOCKET, SO_SNDBUF, SOCKOPT_PTR(&size), &len);// 获取发送缓冲区大小
 
     log_debug("socket=%d send_buf_size=%d", m_socket, size);
 }
@@ -82,13 +82,13 @@ void CBaseSocket::SetSendBufSize(uint32_t send_size)
 void CBaseSocket::SetRecvBufSize(uint32_t recv_size)
 {
     // 设置接收缓冲区大小
-    int ret = setsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, &recv_size, 4);
+    int ret = setsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, SOCKOPT_CAST(&recv_size), 4);
     if (ret == SOCKET_ERROR)
         log_error("set SO_RCVBUF failed for fd=%d", m_socket);
 
 	int size = 0;
     socklen_t len = 4;
-    getsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, &size, &len);// 获取接收缓冲区大小
+    getsockopt(m_socket, SOL_SOCKET, SO_RCVBUF, SOCKOPT_PTR(&size), &len);// 获取接收缓冲区大小
 
     log_debug("socket=%d recv_buf_size=%d", m_socket, size);
 }
@@ -120,7 +120,7 @@ int CBaseSocket::Listen(const char* server_ip, uint16_t port, callback_t callbac
     sockaddr_in serv_addr;
     _SetAddr(server_ip, port, &serv_addr);
 
-    int ret = ::bind(m_socket, (sockaddr*)&serv_addr, sizeof(serv_addr));
+    int ret = bind(m_socket, (sockaddr*)&serv_addr, sizeof(serv_addr));
     if (ret == SOCKET_ERROR) {
         log_error("bind failed, err_code=%d, server_ip=%s, port=%u", _GetErrorCode(), server_ip, port);
         // log_error("bind failed, server_ip=%s, port=%u, err_code=%d, err_msg=%s",
