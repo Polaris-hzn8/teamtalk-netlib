@@ -99,7 +99,7 @@ bool CImPdu::IsPduAvailable(uchar_t* buf, uint32_t len, uint32_t& pdu_len)
     }
 
     if (pdu_len > len) {
-        // log("pdu_len=%d, len=%d\n", pdu_len, len);
+        // log_info("pdu_len=%d, len=%d\n", pdu_len, len);
         return false;
     }
 

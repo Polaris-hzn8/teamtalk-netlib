@@ -48,14 +48,14 @@ CBaseSocket* FindBaseSocket(net_handle_t fd)
 //////////////////////////////////CBaseSocket//////////////////////////////////////////////
 CBaseSocket::CBaseSocket()
 {
-    // log("CBaseSocket::CBaseSocket\n");
+    // log_info("CBaseSocket::CBaseSocket\n");
     m_socket = INVALID_SOCKET;
     m_state = SOCKET_STATE_IDLE;
 }
 
 CBaseSocket::~CBaseSocket()
 {
-    // log("CBaseSocket::~CBaseSocket, socket=%d\n", m_socket);
+    // log_info("CBaseSocket::~CBaseSocket, socket=%d\n", m_socket);
 }
 
 /**
@@ -213,7 +213,7 @@ int CBaseSocket::Send(void* buf, int len)
 			CEventDispatch::Instance()->AddEvent(m_socket, SOCKET_WRITE);
 #endif
             ret = 0;
-            // log("socket send block fd=%d", m_socket);
+            // log_info("socket send block fd=%d", m_socket);
         } else {
             log_error("send failed, err_code=%d, len=%d", err_code, len);
         }
