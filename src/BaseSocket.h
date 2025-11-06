@@ -99,4 +99,3 @@ private:
 CBaseSocket* FindBaseSocket(net_handle_t fd);
 
 #endif
-
