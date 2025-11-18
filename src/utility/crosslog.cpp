@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include "crosslog.h"
 
 #ifdef _WIN32
@@ -25,7 +26,8 @@
         }
     };
     // 静态实例
-    std::unique_ptr<ILogger> g_logger = std::make_unique<WinLogger>();
+    std::unique_ptr<ILogger> g_logger(new WinLogger());
+    // std::unique_ptr<ILogger> g_logger = std::make_unique<WinLogger>();
 #else
     #include "slog_api.h"
 
@@ -62,8 +64,8 @@
             }
         }
     };
-
-    std::unique_ptr<ILogger> g_logger = std::make_unique<LinuxLogger>();
+    std::unique_ptr<ILogger> g_logger(new LinuxLogger());
+    // std::unique_ptr<ILogger> g_logger = std::make_unique<LinuxLogger>();
 #endif
 
 //#define __FILENAME__ (strrchr(__FILE__, '/') ? (strrchr(__FILE__, '/') + 1) : __FILE__)

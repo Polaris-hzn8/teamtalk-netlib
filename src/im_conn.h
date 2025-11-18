@@ -3,7 +3,7 @@
  Email: 3453851623@qq.com
  filename: im_conn.h
  Update Time: Mon 12 Jun 2023 23:48:34 CST
- brief: 
+ brief: tcp网络传输 手动处理拆包粘包
 */
 
 #ifndef _IMCONN_H_

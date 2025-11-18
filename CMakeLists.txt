@@ -9,6 +9,10 @@ set(THIRD_DIR third)
 # 更精确地收集文件
 file(GLOB_RECURSE MAIN_HEADERS "src/*.h" "src/*.hpp")
 file(GLOB_RECURSE MAIN_SOURCES "src/*.cpp" "src/*.cc" "src/*.c")
+file(GLOB_RECURSE NETCORE_HEADERS "src/core/*.h" "src/core/*.hpp")
+file(GLOB_RECURSE NETCORE_SOURCES "src/core/*.cpp" "src/core/*.cc" "src/core/*.c")
+file(GLOB_RECURSE UTILITY_HEADERS "src/utility/*.h" "src/utility/*.hpp")
+file(GLOB_RECURSE UTILITY_SOURCES "src/utility/*.cpp" "src/utility/*.cc" "src/utility/*.c")
 file(GLOB_RECURSE IMPDU_HEADERS "src/impdu/*.h" "src/impdu/*.hpp")
 file(GLOB_RECURSE IMPDU_SOURCES "src/impdu/*.cpp" "src/impdu/*.cc" "src/impdu/*.c")
 file(GLOB_RECURSE PB_HEADERS "src/pbgen/*.h" "src/pbgen/*.hpp")
@@ -68,8 +72,10 @@ endif()
 # 头文件包含
 include_directories(
     src/
+    src/core
     src/impdu
     src/pbgen
+    src/utility
     third/protobuf/include
     ${LOG_DIR}
 )
@@ -80,13 +86,21 @@ include_directories(
 #aux_source_directory(src/impdu SRC_LIST2)
 # 创建库目标
 add_library(network STATIC
-    ${MAIN_HEADERS} ${IMPDU_HEADERS} ${PB_HEADERS} ${YAOLOG_HEADERS}
-    ${MAIN_SOURCES} ${IMPDU_SOURCES} ${PB_SOURCES} ${YAOLOG_SOURCES}
+    ${MAIN_HEADERS} ${MAIN_SOURCES}
+    ${NETCORE_HEADERS} ${NETCORE_SOURCES}
+    ${UTILITY_HEADERS} ${UTILITY_SOURCES}
+    ${IMPDU_HEADERS} ${IMPDU_SOURCES}
+    ${PB_HEADERS} ${PB_SOURCES}
+    ${YAOLOG_HEADERS} ${YAOLOG_SOURCES}
 )
 
 # 设置分类
 source_group("Generated" FILES ${PB_SOURCES})
 source_group("Generated" FILES ${PB_HEADERS})
+source_group("NetCore" FILES ${NETCORE_HEADERS})
+source_group("NetCore" FILES ${NETCORE_SOURCES})
+source_group("Utility" FILES ${UTILITY_HEADERS})
+source_group("Utility" FILES ${UTILITY_SOURCES})
 source_group("Protocol" FILES ${IMPDU_HEADERS})
 source_group("Protocol" FILES ${IMPDU_SOURCES})
 source_group("Header Files" FILES ${MAIN_HEADERS})

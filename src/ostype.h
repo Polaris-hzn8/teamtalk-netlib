@@ -102,5 +102,12 @@ typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, vo
     #define SOCKOPT_PTR(x) (x)
 #endif
 
+// 动态库导出支持
+#ifdef WIN32
+    #define DLL_MODIFIER __declspec(dllexport)
+#else
+	#define DLL_MODIFIER
+#endif
+
 #endif
 
