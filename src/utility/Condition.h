@@ -20,7 +20,7 @@
 #include <errno.h>
 #endif
 
-class CCondition
+class NETWORK_DLL CCondition
 {
 public:
     CCondition(CLock* pLock);

@@ -39,7 +39,7 @@ typedef struct {
     uint16_t    reversed;   // 预留字段
 } PduHeader_t;
 
-class DLL_MODIFIER CImPdu
+class NETWORK_DLL CImPdu
 {
 public:
     CImPdu();

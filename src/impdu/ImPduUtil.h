@@ -57,7 +57,7 @@ private:
  * 1.通过扩展缓冲区大小来适应不断增长的数据量
  * 2.用于网络通信或数据序列化等场景
  */
-class DLL_MODIFIER CSimpleBuffer
+class NETWORK_DLL CSimpleBuffer
 {
 public:
 	CSimpleBuffer();

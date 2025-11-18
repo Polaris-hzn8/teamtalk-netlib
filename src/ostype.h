@@ -103,10 +103,20 @@ typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, vo
 #endif
 
 // 动态库导出支持
+// #ifdef WIN32
+//     #define DLL_MODIFIER __declspec(dllexport)
+// #else
+// 	#define DLL_MODIFIER
+// #endif
+
 #ifdef WIN32
-    #define DLL_MODIFIER __declspec(dllexport)
+	#ifdef NETWORK_EXPORTS
+		#define NETWORK_DLL __declspec(dllexport)
+	#else
+		#define NETWORK_DLL __declspec(dllimport)
+	#endif
 #else
-	#define DLL_MODIFIER
+		#define NETWORK_DLL
 #endif
 
 #endif

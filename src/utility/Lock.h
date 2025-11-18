@@ -11,7 +11,7 @@
 
 #include "ostype.h"
 
-class CLock
+class NETWORK_DLL CLock
 {
 public:
     CLock();
@@ -35,7 +35,7 @@ private:
 #endif
 };
 
-class CAutoLock
+class NETWORK_DLL CAutoLock
 {
 public:
     CAutoLock(CLock* pLock);
@@ -46,7 +46,7 @@ private:
 
 ////////////////////////////////////////////////////////// 读写锁
 #ifndef _WIN32
-class CRWLock
+class NETWORK_DLL CRWLock
 {
 public:
     CRWLock();
@@ -61,7 +61,7 @@ private:
     pthread_rwlock_t m_lock;
 };
 
-class CAutoRWLock
+class NETWORK_DLL CAutoRWLock
 {
 public:
     CAutoRWLock(CRWLock* pLock, bool bRLock = true);
