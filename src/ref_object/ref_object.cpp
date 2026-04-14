@@ -19,4 +19,4 @@ void CRefObject::ReleaseRef() {
   }
 }
 
-}// namespace imcore
+}  // namespace imcore

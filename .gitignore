@@ -38,9 +38,6 @@
 bin/
 build/
 
-# protobuff
-third/protobuf/*
-!third/protobuf/protobuf-2.6.1.tar.gz
-
-# slog
-!third/slog/include/slog_api.h
+# pbgen
+src/pbgen/
+!src/pbgen/readme.txt

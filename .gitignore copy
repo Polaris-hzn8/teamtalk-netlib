@@ -1,0 +1,66 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# vscode_folders
+.vscode/
+.cursor/
+
+# version
+server/ttbase/version.h
+
+#hiredis
+third/hiredis/*
+!third/hiredis/hiredis-master.zip
+
+# log4cxx
+third/log4cxx/*
+!third/log4cxx/apache-log4cxx-0.10.0.tar.gz
+!third/log4cxx/console.cpp
+!third/log4cxx/inputstreamreader.cpp
+!third/log4cxx/socketoutputstream.cpp
+
+# protobuff
+third/protobuf/*
+!third/protobuf/protobuf-2.6.1.tar.gz
+
+# daeml
+daeml/daeml
+
+# cmake
+bin/
+build/
+teamtalk_build/
+
+# output_pack
+im-server-*.tar.gz
+im_server_pack/

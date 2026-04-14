@@ -8,17 +8,17 @@ namespace imcore {
 
 // 引用计数对象类
 class CRefObject {
-  public:
-   CRefObject();
-   virtual ~CRefObject();
- 
-   void AddRef();
-   void ReleaseRef();
- 
-  private:
-   std::atomic<int> m_refCount;
+ public:
+  CRefObject();
+  virtual ~CRefObject();
+
+  void AddRef();
+  void ReleaseRef();
+
+ private:
+  std::atomic<int> m_refCount;
 };
 
-}// namespace imcore
+}  // namespace imcore
 
 #endif  // _REF_OBJECT_H_

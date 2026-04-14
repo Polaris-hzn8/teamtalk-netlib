@@ -128,7 +128,8 @@ IMCoreErrorCode OperationManager::startOperation(IN Operation* pOperation, Int32
         m_vecRealtimeOperations.push_back(pOperation);
       }
       m_cv.notify_one();
-    }).detach();
+    })
+      .detach();
   } else {
     std::lock_guard<std::mutex> locker(m_mutexOperation);
     m_vecRealtimeOperations.push_back(pOperation);

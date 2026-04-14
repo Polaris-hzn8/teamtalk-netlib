@@ -31,6 +31,6 @@ class TcpSocketsManager {
   ConnMap_t m_client_conn_map;
 };
 
-}  // namespace netwrok
+}  // namespace imcore
 
 #endif  // _TCP_SOCKETS_MANAGER_
