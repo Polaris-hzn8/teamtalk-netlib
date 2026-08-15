@@ -3,9 +3,9 @@
  Email: 3453851623@qq.com
  filename: netlib.h
  Update Time: Wed 14 Jun 2023 08:47:55 CST
- brief: 网络库
-        封装CEventDispatch
-        主要用于处理TCP长连接
+ brief: 网络库API接口
+  1.封装CEventDispatch
+  2.主要用于处理tcp连接
 */
 
 #ifndef TEAMTALK_IMCORE_NETLIB_CORE_NETLIB_H_
