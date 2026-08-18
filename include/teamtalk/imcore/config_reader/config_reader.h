@@ -11,6 +11,8 @@
 #include <map>
 #include <string>
 #include <cstdint>
+#include <utility>
+#include <vector>
 
 namespace teamtalk::imcore::config_reader {
 
@@ -35,6 +37,13 @@ class CConfigReader {
   bool SetConfigValue(const char* key, const char* value);
   bool SetConfigValue(const std::string& key, const std::string& value);
   bool SetConfigValue(const std::string& key, int value);
+
+  // 按编号读取端点列表（IP前缀+端口前缀从1开始递增读取，直到某个key不存在为止）
+  // 例如 ReadNumberedEndpoints("DBServerIP", "DBServerPort")
+  // 会依次读取 DBServerIP1/DBServerPort1, DBServerIP2/DBServerPort2, ...
+  std::vector<std::pair<std::string, uint16_t>> ReadNumberedEndpoints(
+      const std::string& ip_prefix,
+      const std::string& port_prefix);
 
   bool IsLoadSuccess() const { return m_load_ok; }
 

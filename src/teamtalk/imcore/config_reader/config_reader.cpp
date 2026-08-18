@@ -96,6 +96,27 @@ bool CConfigReader::SetConfigValue(const std::string& key, int value) {
   return SetConfigValue(key, std::string(buf));
 }
 
+std::vector<std::pair<std::string, uint16_t>> CConfigReader::ReadNumberedEndpoints(
+    const std::string& ip_prefix,
+    const std::string& port_prefix) {
+  std::vector<std::pair<std::string, uint16_t>> result;
+  for (uint32_t i = 0;; ++i) {
+    const std::string ip_key = ip_prefix + std::to_string(i);
+    const std::string port_key = port_prefix + std::to_string(i);
+
+    std::string ip_val = GetConfigValue(ip_key);
+    std::string port_val = GetConfigValue(port_key);
+
+    if (ip_val.empty() || port_val.empty()) {
+      break;
+    }
+
+    uint32_t port = GetUint32Value(port_key, 0);
+    result.emplace_back(std::move(ip_val), static_cast<uint16_t>(port));
+  }
+  return result;
+}
+
 bool CConfigReader::_LoadFile(const char* file_path) {
   m_load_ok = false;
   m_config_file.clear();
