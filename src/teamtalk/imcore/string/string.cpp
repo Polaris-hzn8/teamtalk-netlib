@@ -151,4 +151,18 @@ char* replace_str(char* pSrc, char oldChar, char newChar) {
   return pSrc;
 }
 
+void str_explode(const std::string& str, char separator, std::vector<std::string>& out) {
+  out.clear();
+  std::string::size_type start = 0;
+  while (true) {
+    auto pos = str.find(separator, start);
+    if (pos == std::string::npos) {
+      out.emplace_back(str.substr(start));
+      break;
+    }
+    out.emplace_back(str.substr(start, pos - start));
+    start = pos + 1;
+  }
+}
+
 }  // namespace teamtalk::imcore::string

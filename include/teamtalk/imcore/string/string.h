@@ -10,6 +10,7 @@
 
 #include <cctype>
 #include <string>
+#include <vector>
 
 namespace teamtalk::imcore::string {
 
@@ -81,6 +82,12 @@ void replace_mark(std::string& str, uint32_t new_value, uint32_t& begin_pos);
 /// @param newChar 新字符
 /// @return pSrc；若 pSrc 为 nullptr 则返回 nullptr
 char* replace_str(char* pSrc, char oldChar, char newChar);
+
+/// @brief 按指定分隔符将字符串拆分为子串数组
+/// @param str       待拆分的字符串
+/// @param separator 分隔符
+/// @param out       拆分后的子串，传入前会被清空
+void str_explode(const std::string& str, char separator, std::vector<std::string>& out);
 
 }  // namespace teamtalk::imcore::string
 
