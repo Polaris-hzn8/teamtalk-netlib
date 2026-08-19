@@ -3,7 +3,7 @@
  Email: 3453851623@qq.com
  filename: EventDispatch.h
  Update Time: Wed 14 Jun 2023 15:25:05 CST
- brief: Reactor模型中的事件分发器 event_dispatch 
+ brief: Reactor模型中的事件分发器 event_dispatch
       1.事件触发 - IO多路复用器
       2.事件调度 - 事件分发器
     主要特性：

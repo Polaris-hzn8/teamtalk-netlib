@@ -54,4 +54,4 @@ class CThreadPool {
 
 }  // namespace teamtalk::imcore::thread
 
-#endif // TEAMTALK_IMCORE_THREAD_THREADPOOL_H_
+#endif  // TEAMTALK_IMCORE_THREAD_THREADPOOL_H_

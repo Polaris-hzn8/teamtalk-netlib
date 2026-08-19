@@ -5,7 +5,7 @@
  * @brief: 原子操作
  * 1.多线程环境下的原子操作
  * 2.访问共享变量时保证读写的原子性与线程安全性
-*/
+ */
 
 #ifndef TEAMTALK_IMCORE_COMMON_ATOMIC_H_
 #define TEAMTALK_IMCORE_COMMON_ATOMIC_H_
@@ -27,4 +27,4 @@
 
 typedef volatile long atomic_t;  // 原子访问
 
-#endif // TEAMTALK_IMCORE_COMMON_ATOMIC_H_
+#endif  // TEAMTALK_IMCORE_COMMON_ATOMIC_H_

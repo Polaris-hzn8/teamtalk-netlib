@@ -80,4 +80,4 @@ class CThreadNotify {
 
 }  // namespace teamtalk::imcore::thread
 
-#endif // TEAMTALK_IMCORE_THREAD_THREAD_H_
+#endif  // TEAMTALK_IMCORE_THREAD_THREAD_H_

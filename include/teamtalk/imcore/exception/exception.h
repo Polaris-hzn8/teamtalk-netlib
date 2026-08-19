@@ -20,6 +20,7 @@ class Exception : public std::exception {
 
   const char* what() const noexcept override { return msg_.c_str(); }
   int32_t code() const noexcept { return code_; }
+
  protected:
   int32_t code_;
   std::string msg_;

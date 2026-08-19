@@ -2,9 +2,8 @@
  * @author: luochenhao
  * @email: lch2022fox@163.com
  * @time: Mon 04 May 2026 17:08:30 CST
- * @brief: 
-*/
-
+ * @brief:
+ */
 
 #ifndef TEAMTALK_IMCORE_COMMON_TOOLS_H_
 #define TEAMTALK_IMCORE_COMMON_TOOLS_H_
@@ -65,6 +64,6 @@ unsigned int ip2long(const char* ip);
 /// @return 指向静态缓冲区的 C字符串；非线程安全，勿长期保存指针
 char* long2ip(const unsigned int in);
 
-}  // namespace teamtalk::imcore::netlib
+}  // namespace teamtalk::imcore::common
 
 #endif  // TEAMTALK_IMCORE_COMMON_TOOLS_H_

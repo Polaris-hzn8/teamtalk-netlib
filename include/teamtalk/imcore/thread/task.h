@@ -23,6 +23,6 @@ class CTask {
  private:
 };
 
-}  // namespace teamtalk::imcore::threadpool
+}  // namespace teamtalk::imcore::thread
 
-#endif // TEAMTALK_IMCORE_THREAD_TASK_H_
+#endif  // TEAMTALK_IMCORE_THREAD_TASK_H_

@@ -70,8 +70,7 @@ bool str_iequals(const std::string& str1, const std::string& str2) {
     return false;
   }
   for (size_t i = 0; i < str1.size(); ++i) {
-    if (std::tolower(static_cast<unsigned char>(str1[i])) !=
-        std::tolower(static_cast<unsigned char>(str2[i]))) {
+    if (std::tolower(static_cast<unsigned char>(str1[i])) != std::tolower(static_cast<unsigned char>(str2[i]))) {
       return false;
     }
   }

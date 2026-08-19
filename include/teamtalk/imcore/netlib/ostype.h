@@ -56,17 +56,17 @@
 #endif
 
 #define NETLIB_INVALID_HANDLE -1
-#define INVALID_VALUE   0
+#define INVALID_VALUE 0
 
 #ifdef _WIN32
-typedef char			              int8_t;
-typedef short			              int16_t;
-typedef int				              int32_t;
-typedef	long long		            int64_t;
-typedef unsigned char	          uint8_t;
-typedef unsigned short	        uint16_t;
-typedef unsigned int	          uint32_t;
-typedef	unsigned long long	    uint64_t;
+typedef char int8_t;
+typedef short int16_t;
+typedef int int32_t;
+typedef long long int64_t;
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
+typedef unsigned long long uint64_t;
 typedef int socklen_t;
 #else
 typedef int SOCKET;
@@ -75,17 +75,14 @@ const int INVALID_SOCKET = -1;
 #endif
 
 typedef unsigned char uchar_t;
-typedef int           net_handle_t;
-typedef int           conn_handle_t;
+typedef int net_handle_t;
+typedef int conn_handle_t;
 
 typedef void (*callback_t)(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
 
 namespace teamtalk::imcore::netlib {
 
-enum {
-  NETLIB_OK = 0,
-  NETLIB_ERROR = -1
-};
+enum { NETLIB_OK = 0, NETLIB_ERROR = -1 };
 
 enum {
   NETLIB_MSG_CONNECT = 1,

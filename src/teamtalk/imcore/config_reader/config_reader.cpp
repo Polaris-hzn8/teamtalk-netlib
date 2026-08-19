@@ -96,9 +96,8 @@ bool CConfigReader::SetConfigValue(const std::string& key, int value) {
   return SetConfigValue(key, std::string(buf));
 }
 
-std::vector<std::pair<std::string, uint16_t>> CConfigReader::ReadNumberedEndpoints(
-    const std::string& ip_prefix,
-    const std::string& port_prefix) {
+std::vector<std::pair<std::string, uint16_t>> CConfigReader::ReadNumberedEndpoints(const std::string& ip_prefix,
+                                                                                   const std::string& port_prefix) {
   std::vector<std::pair<std::string, uint16_t>> result;
   for (uint32_t i = 0;; ++i) {
     const std::string ip_key = ip_prefix + std::to_string(i);

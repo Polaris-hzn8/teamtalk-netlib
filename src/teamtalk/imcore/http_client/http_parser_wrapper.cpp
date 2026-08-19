@@ -5,7 +5,6 @@
  * @brief: HTTP解析器包装类实现
  */
 
- 
 #include <string>
 #include <cstring>
 #include <cstdlib>
@@ -18,8 +17,7 @@ namespace teamtalk::imcore::http_client {
 #define MAX_REFERER_LEN 32
 
 CHttpParserWrapper::CHttpParserWrapper()
-    : m_http_parser(std::make_unique<http_parser>())
-    , m_settings(std::make_unique<http_parser_settings>()) {}
+  : m_http_parser(std::make_unique<http_parser>()), m_settings(std::make_unique<http_parser_settings>()) {}
 
 CHttpParserWrapper::~CHttpParserWrapper() = default;
 

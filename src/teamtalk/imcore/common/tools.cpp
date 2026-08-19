@@ -3,7 +3,7 @@
  * @email: lch2022fox@163.com
  * @time: Mon 04 May 2026 17:09:26 CST
  * @brief: 各种工具类封装
-*/
+ */
 
 #include <cstdio>
 #include <teamtalk/imcore/common/tools.h>

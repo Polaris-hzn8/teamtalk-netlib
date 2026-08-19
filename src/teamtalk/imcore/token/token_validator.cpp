@@ -62,7 +62,8 @@ void md5(const uint8_t* initial_msg, size_t initial_len, uint8_t* digest) {
   // append "1" bit to message
   // append "0" bits until message length in bits ≡ 448 (mod 512)
   // append length mod (2^64) to message
-  for (new_len = initial_len + 1; new_len % (512 / 8) != 448 / 8; new_len++);
+  for (new_len = initial_len + 1; new_len % (512 / 8) != 448 / 8; new_len++)
+    ;
 
   msg = (uint8_t*)malloc(new_len + 8);
 
@@ -127,7 +128,7 @@ void md5(const uint8_t* initial_msg, size_t initial_len, uint8_t* digest) {
   to_bytes(h2, digest + 8);
   to_bytes(h3, digest + 12);
 }
-}
+}  // namespace
 
 // 生成用户令牌
 int genToken(unsigned int uid, time_t time_offset, char* md5_str_buf) {

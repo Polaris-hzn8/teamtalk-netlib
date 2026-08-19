@@ -23,4 +23,4 @@ bool IsTokenValid(uint32_t user_id, const char* token);
 
 }  // namespace teamtalk::imcore::token
 
-#endif // TEAMTALK_IMCORE_TOKEN_TOKEN_VALIDATOR_H_
+#endif  // TEAMTALK_IMCORE_TOKEN_TOKEN_VALIDATOR_H_

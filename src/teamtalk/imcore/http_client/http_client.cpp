@@ -3,7 +3,7 @@
  * @email: lch2022fox@163.com
  * @time: Sun 03 May 2026 23:17:22 CST
  * @brief: HTTP客户端类实现
-*/
+ */
 
 #include <string>
 #include <memory.h>
@@ -32,7 +32,7 @@ size_t write_data_string(void* ptr, size_t size, size_t nmemb, void* userp) {
 //   }
 //   return nLen;
 // }
-}
+}  // namespace
 
 CHttpClient::CHttpClient() {}
 
