@@ -21,10 +21,11 @@ namespace teamtalk::imcore::slog {
 static constexpr int kMaxMsgLen = 1024 * 4;
 
 namespace {
-using namespace teamtalk::imcore::string;
+namespace ttstring = teamtalk::imcore::string;
+
 struct SlogConf {
-  std::string name_ = "default";
-  std::string log_path_ = "./log/imcore.log";
+  std::string name_ = "teamtalk";
+  std::string log_path_ = "./log/default.log";
   SlogLevel level_ = SlogLevel::kInfo;
   bool console_ = true;
   bool async_ = true;
@@ -86,8 +87,8 @@ SlogConf parse_conf(const char* path) {
 
     std::string k = line.substr(0, pos);
     std::string v = line.substr(pos + 1);
-    str_trim(k);
-    str_trim(v);
+    ttstring::str_trim(k);
+    ttstring::str_trim(v);
     if (k.empty() || v.empty()) {
       continue;
     }
@@ -102,15 +103,15 @@ SlogConf parse_conf(const char* path) {
     } else if (k == "async") {
       conf.async_ = (v == "true" || v == "1");
     } else if (k == "max_size_mb") {
-      if (str_to_int(v, parsed) && parsed >= 1) {
+      if (ttstring::str_to_int(v, parsed) && parsed >= 1) {
         conf.max_size_mb_ = parsed;
       }
     } else if (k == "max_files") {
-      if (str_to_int(v, parsed) && parsed >= 1) {
+      if (ttstring::str_to_int(v, parsed) && parsed >= 1) {
         conf.max_files_ = parsed;
       }
     } else if (k == "queue_size") {
-      if (str_to_int(v, parsed) && parsed >= 64) {
+      if (ttstring::str_to_int(v, parsed) && parsed >= 64) {
         conf.queue_size_ = static_cast<size_t>(parsed);
       }
     }
@@ -121,9 +122,10 @@ SlogConf parse_conf(const char* path) {
 }  // namespace
 
 // -------------------------------------------------------------
-// Slog::Impl
+// SlogImpl
 // -------------------------------------------------------------
-struct Slog::Impl {
+class SlogImpl {
+ public:
   std::shared_ptr<spdlog::logger> logger_;
   std::mutex mtx_;
   bool initialized_ = false;
@@ -180,7 +182,7 @@ struct Slog::Impl {
 // -------------------------------------------------------------
 // Slog 公开方法
 // -------------------------------------------------------------
-Slog::Slog() : impl_(std::make_unique<Impl>()) {}
+Slog::Slog() : impl_(std::make_unique<SlogImpl>()) {}
 
 Slog::~Slog() {
   Shutdown();

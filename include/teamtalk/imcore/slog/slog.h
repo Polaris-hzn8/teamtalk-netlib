@@ -38,6 +38,8 @@ enum class SlogLevel {
   kOff = 5,    // 关闭级别
 };
 
+class SlogImpl;
+
 class Slog {
  public:
   Slog();
@@ -71,8 +73,7 @@ class Slog {
   static Slog& Default();
 
  private:
-  struct Impl;
-  std::unique_ptr<Impl> impl_;
+  std::unique_ptr<SlogImpl> impl_;
 };
 
 }  // namespace teamtalk::imcore::slog
